@@ -8,7 +8,7 @@ const updatableObj = {
     text: 'This is a hotupdatable text',
 }
 // @ts-ignore
-import.meta.addUpvalue?.('updatableObj', updatableObj);
+import.meta.ccHot?.addUpvalue('updatableObj', updatableObj);
 
 @ccclass('root')
 export class mainModule extends Component {
