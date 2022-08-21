@@ -11,10 +11,10 @@ window.hotupdate = async function () {
 
     let oldEntries = System.entries();
     for (let it of oldEntries) {
-        const [key, ns] = it;
+        const [key, ns, upvalueList] = it;
         modules.push(key);
         if (firstUpdate) {
-            originModuleMap[key] = ns;
+            originModuleMap[key] = [ns, upvalueList];
         }
     }
     
@@ -25,12 +25,15 @@ window.hotupdate = async function () {
     let newModuleMap = {};
     let newEntries = System.entries();
     for (let it of newEntries) {
-        const [key, ns] = it;
-        newModuleMap[key] = ns;
+        const [key, ns, upvalueList] = it;
+        newModuleMap[key] = [ns, upvalueList];
     }
 
     // custom hot update
-    let originNs = originModuleMap["chunks:///_virtual/main-module.ts"];
-    let newNs = newModuleMap["chunks:///_virtual/main-module.ts"];
+    let [originNs, originUpvalueList] = originModuleMap["no-schema:/src/chunks/_virtual/main-module.ts"];
+    let [newNs, newUpvalueList] = newModuleMap["no-schema:/src/chunks/_virtual/main-module.ts"];
     originNs.mainModule.prototype.updateLabel = newNs.mainModule.prototype.updateLabel;
+    if (originUpvalueList && newUpvalueList) {
+        originUpvalueList.updatableObj.text = newUpvalueList.updatableObj.text;
+    }
 }
