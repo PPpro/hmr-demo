@@ -17,9 +17,4 @@ export class parent_module extends Component {
     }
 }
 
-// @ts-ignore
-import.meta.ccHot?.dispose(() => {
-    console.log('parent_module was update')
-    js.unregisterClass(parent_module);
-})
 

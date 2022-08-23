@@ -28,10 +28,3 @@ export class mainModule extends Component {
     }
 }
 
-
-
-// @ts-ignore
-import.meta.ccHot?.dispose(() => {
-    console.log('mainModule was update')
-    js.unregisterClass(mainModule);
-})

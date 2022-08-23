@@ -15,10 +15,5 @@ export class child_module_1 extends Component {
     }
 }
 
-// @ts-ignore
-import.meta.ccHot?.dispose(() => {
-    console.log('child_module_1 was update')
-    js.unregisterClass(child_module_1);
-})
 
 
