@@ -1,3 +1,4 @@
+import './demo';
 import { _decorator, Component, Node, Label, js } from 'cc';
 import { parent_module } from './parent-module';
 const { ccclass, property } = _decorator;
@@ -7,11 +8,11 @@ console.log(parent_module);
 const updatableObj = {
     text: 'This is a hotupdatable text',
 }
-// @ts-ignore
+
 import.meta.ccHot?.addUpvalue('updatableObj', updatableObj);
 
 @ccclass('root')
-export class mainModule extends Component {
+export class MainModule extends Component {
     @property(Label)
     label: Label = null!;
     

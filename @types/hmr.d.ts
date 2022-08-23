@@ -37,7 +37,7 @@ declare global {
 
             dispose(handler: DisposeHandler);
 
-            upvalue<TFunction extends Function> (target: TFunction): TFunction | void;
+            addUpvalue(name: string, upvalue: Object): void;
         };
 
         moduleSystem?: ModuleSystem;

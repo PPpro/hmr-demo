@@ -1,9 +1,7 @@
-// @ts-ignore
 const ms = import.meta.moduleSystem;
 
 let originModuleMap;
 
-// @ts-ignore
 const ccHot = import.meta.ccHot;
 if (ccHot) {
     ccHot.preventDefaultUpdate = true;
@@ -28,5 +26,5 @@ globalThis.hotupdate = async function () {
     let originNs = originModuleMap["no-schema:/src/chunks/_virtual/main-module.ts"];
     let newNs = newModuleMap["no-schema:/src/chunks/_virtual/main-module.ts"];
     originNs['MainModule'].prototype.updateLabel = newNs['MainModule'].prototype.updateLabel;
-    originNs['UpvalueClass'].prototype.getText = newNs['UpvalueClass'].prototype.getText;
+    originNs['updatableObj'].text = newNs['updatableObj'].text;
 }
