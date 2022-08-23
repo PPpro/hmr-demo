@@ -21,6 +21,9 @@ declare global {
         ccHot?: {
             data: unknown;
 
+            get preventDefaultUpdate (): boolean;
+            set preventDefaultUpdate (v: boolean);
+
             accept(errorHandler?: ErrorHandler): void;
             accept(
                 modules: string | string[],
