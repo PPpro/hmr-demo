@@ -5,11 +5,14 @@ const { ccclass, property } = _decorator;
 
 console.log(parent_module);
 
-const updatableObj = {
-    text: 'This is a hotupdatable text',
+@import.meta.upvalue('UpvalueClass')
+class UpvalueClass {
+    getText () {
+        return 'This is a hotupdatable text';
+    }
 }
 
-import.meta.ccHot?.addUpvalue('updatableObj', updatableObj);
+const upvalue = new UpvalueClass(); 
 
 @ccclass('root')
 export class MainModule extends Component {
@@ -21,7 +24,7 @@ export class MainModule extends Component {
     
     updateLabel () {
         this.label.string = 'hello world';
-        this.label2.string = updatableObj.text;
+        this.label2.string = upvalue.getText();
     }
 
     update () {

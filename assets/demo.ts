@@ -4,7 +4,7 @@ let originModuleMap;
 
 const ccHot = import.meta.ccHot;
 if (ccHot) {
-    ccHot.preventDefaultUpdate = true;
+    ccHot.preventHotReload = true;
 }
 
 globalThis.hotupdate = async function () {
@@ -26,5 +26,7 @@ globalThis.hotupdate = async function () {
     let originNs = originModuleMap["no-schema:/src/chunks/_virtual/main-module.ts"];
     let newNs = newModuleMap["no-schema:/src/chunks/_virtual/main-module.ts"];
     originNs['MainModule'].prototype.updateLabel = newNs['MainModule'].prototype.updateLabel;
-    originNs['updatableObj'].text = newNs['updatableObj'].text;
+    originNs['UpvalueClass'].prototype.getText = newNs['UpvalueClass'].prototype.getText;
 }
+
+export {}
