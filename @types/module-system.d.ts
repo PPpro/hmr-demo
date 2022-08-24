@@ -2,7 +2,6 @@
 type DisposeHandler = (data: unknown) => void;
 type ErrorHandler = (err: unknown, res: { moduleId: string, dependencyId: string }) => void
 
-
 type ModuleId = string;
 type Module = Object;
 type ModuleMap = Record<ModuleId, Module>;
@@ -36,7 +35,7 @@ declare global {
             decline(): void;
             decline(dependencies: string[]): void;
 
-            dispose(handler: DisposeHandler);
+            dispose(handler: DisposeHandler): void;
         };
 
         moduleSystem?: ModuleSystem;
