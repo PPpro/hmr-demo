@@ -8,9 +8,8 @@ type Module = Object;
 type ModuleMap = Record<ModuleId, Module>;
 
 declare class ModuleSystem {
-
-    set defaultHotupdatable (v: boolean);
-    get defaultHotupdatable (): boolean;
+    set defaultHotReloadable (v: boolean);
+    get defaultHotReloadable (): boolean;
 
     public getModules (): ModuleMap;
     public reload (modules: string[]): Promise<boolean>;
@@ -18,11 +17,13 @@ declare class ModuleSystem {
 
 declare global {
     interface ImportMeta {
+        upvalue(name: string): ClassDecorator;
+
         ccHot?: {
             data: unknown;
 
-            get preventDefaultUpdate (): boolean;
-            set preventDefaultUpdate (v: boolean);
+            get preventHotReload (): boolean;
+            set preventHotReload (v: boolean);
 
             accept(errorHandler?: ErrorHandler): void;
             accept(
@@ -36,8 +37,6 @@ declare global {
             decline(dependencies: string[]): void;
 
             dispose(handler: DisposeHandler);
-
-            addUpvalue(name: string, upvalue: Object): void;
         };
 
         moduleSystem?: ModuleSystem;
